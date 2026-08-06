@@ -38,10 +38,22 @@ El cliente solo interactúa con `fiber-api`. El servicio de estadísticas no se 
 
 | Servicio | URL |
 |---|---|
-| API de factorización | _pendiente_ |
-| API de estadísticas | _pendiente_ |
+| API de factorización | https://fiber-api-htjz.onrender.com |
+| API de estadísticas | https://express-api-v26w.onrender.com |
 
-Desplegados en el plan gratuito de Render. Tras quince minutos de inactividad los servicios se suspenden, por lo que la primera petición puede tardar cerca de un minuto mientras el contenedor arranca. Las siguientes responden con normalidad.
+El cliente interactúa únicamente con la API de factorización. La de estadísticas se documenta por transparencia, pero no requiere consumo directo.
+
+Prueba rápida del flujo completo:
+
+```bash
+curl -X POST https://fiber-api-htjz.onrender.com/api/v1/matrix/process \
+  -H "Content-Type: application/json" \
+  -d '{"matrix": [[0,5,0],[3,4,0]]}'
+```
+
+Ambos servicios corren en contenedores sobre el plan gratuito de Render. Tras quince minutos de inactividad se suspenden, por lo que la primera petición puede tardar cerca de un minuto mientras arrancan. Las siguientes responden con normalidad.
+
+La ruta raíz `/` no está definida en ninguno de los dos servicios: los endpoints disponibles son los listados más abajo.
 
 ---
 
