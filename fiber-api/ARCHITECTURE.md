@@ -10,7 +10,7 @@ Las decisiones transversales al sistema están en [`../ARCHITECTURE.md`](../ARCH
 
 | Componente | Versión | Motivo |
 |---|---|---|
-| Go | 1.23 | — |
+| Go | 1.26 | — |
 | Fiber | v2 | v3 se encontraba en beta al momento del desarrollo |
 | gonum | `gonum.org/v1/gonum/mat` | Librería numérica establecida; evita implementar un algoritmo de ortogonalización propio |
 
