@@ -12,7 +12,7 @@ Cliente
    │ POST /api/v1/matrix/process
    ▼
 ┌──────────────────────────────────────┐
-│  fiber-api · Go 1.23 · Fiber v2      │  :3000
+│  fiber-api · Go 1.26 · Fiber v2      │  :3000
 │                                      │
 │  valida → rota si hace falta →       │
 │  factoriza QR                        │
@@ -34,7 +34,7 @@ El cliente nunca invoca a `express-api` directamente. `fiber-api` actúa como su
 
 | Servicio | Carpeta | Stack | Puerto | Responsabilidad |
 |---|---|---|---|---|
-| Factorización | `fiber-api/` | Go 1.23 · Fiber v2 · gonum | 3000 | Validar, rotar cuando corresponde, factorizar en QR |
+| Factorización | `fiber-api/` | Go 1.26 · Fiber v2 · gonum | 3000 | Validar, rotar cuando corresponde, factorizar en QR |
 | Estadísticas | `express-api/` | Node 20 · TypeScript 5 · Express 5 | 4000 | Calcular cinco métricas sobre las matrices recibidas |
 
 ---
@@ -199,7 +199,43 @@ Recorrido matemático completo en [`sustento-rotacion-qr.html`](sustento-rotacio
 
 ---
 
-## 7. Precisión numérica
+## 7. Contenerización y despliegue
+
+### Imágenes
+
+Cada servicio tiene su propio `Dockerfile` con build multietapa. La imagen final contiene únicamente el artefacto ejecutable —el binario compilado en Go, el código transpilado en Node— sin compiladores, herramientas de construcción ni dependencias de desarrollo. Ambas se ejecutan con un usuario sin privilegios.
+
+En Go el binario se compila con `CGO_ENABLED=0` para obtener un ejecutable estático que corra sobre una imagen base mínima.
+
+### Orquestación local
+
+`docker-compose.yml` levanta ambos servicios en una red común. La resolución entre ellos ocurre por nombre de servicio, no por dirección IP, y `fiber-api` espera a que `express-api` reporte estado saludable antes de arrancar.
+
+### Configuración entre entornos
+
+La misma variable toma tres valores distintos sin que el código cambie:
+
+| Entorno | `STATISTICS_API_URL` |
+|---|---|
+| Local | `http://localhost:4000` |
+| Docker Compose | `http://express-api:4000` |
+| Producción | URL pública del servicio desplegado |
+
+En local proviene del valor por defecto en la configuración; en Docker, del archivo de composición; en producción, de las variables del proveedor. Esta decisión, tomada antes de escribir la primera línea de lógica, es la que permitió contenerizar y desplegar sin modificar código de aplicación.
+
+De la misma forma, el puerto de escucha se lee de `PORT`, lo que permite que los proveedores que asignan puerto dinámicamente funcionen sin configuración adicional.
+
+### Sondas de salud y resolución de nombres
+
+Los `HEALTHCHECK` apuntan a `127.0.0.1` y no a `localhost`.
+
+El motivo surgió durante la puesta en marcha: dentro del contenedor, `localhost` resolvía a la dirección IPv6 `::1`, mientras que el listener de Fiber atendía únicamente en IPv4. La sonda fallaba aunque el servicio respondiera con normalidad a las peticiones reales. Fijar la dirección IPv4 explícita elimina la ambigüedad de resolución.
+
+Las sondas también respetan la variable `PORT`, de modo que funcionan tanto en composición local como en plataformas que asignan el puerto en tiempo de ejecución.
+
+---
+
+## 8. Precisión numérica
 
 Dos comportamientos esperados de la aritmética de punto flotante:
 
@@ -209,7 +245,7 @@ Dos comportamientos esperados de la aritmética de punto flotante:
 
 ---
 
-## 8. Documentación relacionada
+## 9. Documentación relacionada
 
 | Documento | Contenido |
 |---|---|
