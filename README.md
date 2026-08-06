@@ -273,7 +273,7 @@ Así se cumplen ambas menciones del enunciado sin descartar ninguna, y la rotaci
 
 Cuando se rota, `Q × R` reconstruye la matriz rotada y no la original. La respuesta lo declara en el campo `factorizedFrom`, de modo que la identidad sea verificable por el consumidor.
 
-Sustento completo, con el recorrido matemático paso a paso, en [`docs/sustento-rotacion-qr.html`](docs/sustento-rotacion-qr.html).
+Sustento completo, con el recorrido matemático paso a paso, en [`docs/sustento-rotacion-qr.md`](docs/sustento-rotacion-qr.md).
 
 ### Otras decisiones
 
@@ -304,7 +304,7 @@ También es esperable ver decimales largos como `14.000000000000002` donde matem
 |---|---|
 | [`ARCHITECTURE.md`](ARCHITECTURE.md) | Arquitectura del sistema y decisiones de diseño |
 | [`docs/requerimientos-generales.md`](docs/requerimientos-generales.md) | Requerimientos con criterios de aceptación y trazabilidad al enunciado |
-| [`docs/sustento-rotacion-qr.html`](docs/sustento-rotacion-qr.html) | Recorrido matemático de la decisión de rotación condicional |
+| [`docs/sustento-rotacion-qr.md`](docs/sustento-rotacion-qr.md) | Recorrido matemático de la decisión de rotación condicional |
 | [`fiber-api/ARCHITECTURE.md`](fiber-api/ARCHITECTURE.md) | Arquitectura interna del servicio de factorización |
 | [`fiber-api/docs/requerimientos-paso-1.md`](fiber-api/docs/requerimientos-paso-1.md) | Requerimientos del servicio en Go |
 | [`express-api/ARCHITECTURE.md`](express-api/ARCHITECTURE.md) | Arquitectura interna del servicio de estadísticas |
@@ -320,7 +320,7 @@ También es esperable ver decimales largos como `14.000000000000002` donde matem
 ├── ARCHITECTURE.md
 ├── docs/
 │   ├── requerimientos-generales.md
-│   └── sustento-rotacion-qr.html
+│   └── sustento-rotacion-qr.md
 │
 ├── fiber-api/                    Go · Fiber · gonum
 │   ├── ARCHITECTURE.md

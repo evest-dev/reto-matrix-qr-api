@@ -195,7 +195,7 @@ Ambas reconstruyen la matriz original:
 
 **Consecuencia para las pruebas.** Verifican la reconstrucción `Q × R = A` con tolerancia `1e-9`, nunca valores literales de Q y R. Una prueba escrita contra números fijos fallaría al cambiar de algoritmo o de versión de la librería, sin que nada estuviera mal.
 
-Recorrido matemático completo en [`sustento-rotacion-qr.html`](sustento-rotacion-qr.html).
+Recorrido matemático completo en [`docs/sustento-rotacion-qr.md`](docs/sustento-rotacion-qr.md).
 
 ---
 
@@ -250,6 +250,6 @@ Dos comportamientos esperados de la aritmética de punto flotante:
 | Documento | Contenido |
 |---|---|
 | [`docs/requerimientos-generales.md`](docs/requerimientos-generales.md) | Requerimientos transversales, contrato entre APIs, trazabilidad al enunciado |
-| [`sustento-rotacion-qr.html`](sustento-rotacion-qr.html) | Recorrido matemático paso a paso de la decisión de rotación condicional |
+| [`docs/sustento-rotacion-qr.md`](docs/sustento-rotacion-qr.md) | Recorrido matemático paso a paso de la decisión de rotación condicional |
 | [`fiber-api/ARCHITECTURE.md`](fiber-api/ARCHITECTURE.md) | Arquitectura interna del servicio de factorización |
 | [`express-api/ARCHITECTURE.md`](express-api/ARCHITECTURE.md) | Arquitectura interna del servicio de estadísticas |
