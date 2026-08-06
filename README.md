@@ -113,10 +113,12 @@ Ambos servicios deben estar levantados para que el flujo completo funcione. `fib
 
 ## Uso
 
+Los ejemplos apuntan a los servicios desplegados. Para probar en local, reemplaza el host por `http://localhost:3000` en la API de factorización y `http://localhost:4000` en la de estadísticas.
+
 ### Procesar una matriz
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/matrix/process \
+curl -X POST https://fiber-api-htjz.onrender.com/api/v1/matrix/process \
   -H "Content-Type: application/json" \
   -d '{"matrix": [[3,0],[4,5],[0,0]]}'
 ```
@@ -146,7 +148,7 @@ curl -X POST http://localhost:3000/api/v1/matrix/process \
 Cuando la matriz tiene más columnas que filas, se rota antes de factorizar. La respuesta lo declara explícitamente:
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/matrix/process \
+curl -X POST https://fiber-api-htjz.onrender.com/api/v1/matrix/process \
   -H "Content-Type: application/json" \
   -d '{"matrix": [[0,5,0],[3,4,0]]}'
 ```
@@ -166,7 +168,7 @@ curl -X POST http://localhost:3000/api/v1/matrix/process \
 ### Rotación aislada
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/matrix/rotate \
+curl -X POST https://fiber-api-htjz.onrender.com/api/v1/matrix/rotate \
   -H "Content-Type: application/json" \
   -d '{"matrix": [[1,2,3],[4,5,6]]}'
 ```
@@ -181,7 +183,7 @@ curl -X POST http://localhost:3000/api/v1/matrix/rotate \
 ### Estadísticas directamente
 
 ```bash
-curl -X POST http://localhost:4000/api/v1/statistics \
+curl -X POST https://express-api-v26w.onrender.com/api/v1/statistics \
   -H "Content-Type: application/json" \
   -d '{"matrices":[{"name":"D","data":[[5,0,0],[0,3,0],[0,0,9]]}]}'
 ```
@@ -199,7 +201,7 @@ curl -X POST http://localhost:4000/api/v1/statistics \
 ### Errores
 
 ```bash
-curl -X POST http://localhost:3000/api/v1/matrix/process \
+curl -X POST https://fiber-api-htjz.onrender.com/api/v1/matrix/process \
   -H "Content-Type: application/json" \
   -d '{"matrix": [[1,2],[3]]}'
 ```
