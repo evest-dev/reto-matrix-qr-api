@@ -1,0 +1,12 @@
+.git
+.gitignore
+docs/
+*.md
+
+.claude/
+CLAUDE.md
+
+*.test
+*.out
+coverage.out
+vendor/
