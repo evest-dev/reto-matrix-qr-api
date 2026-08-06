@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+docs/
+*.md
+
+.git
+.gitignore
+
+.claude/
+CLAUDE.md
+
+tests/
+*.tsbuildinfo
+.eslintcache
+npm-debug.log*
